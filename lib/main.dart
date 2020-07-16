@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,24 +8,24 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  int questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  int _questionIndex = 0;
 
   List<String> questions = [
     'What\'s your favorite color ?',
     'What\'s your favorite animal ?',
   ];
 
-  void answerQuestion() {
+  void _answerQuestion() {
     setState(() {
-      if (questionIndex + 1 == questions.length) {
-        questionIndex = 0;
+      if (_questionIndex + 1 == questions.length) {
+        _questionIndex = 0;
       } else {
-        questionIndex++;
+        _questionIndex++;
       }
     });
   }
@@ -34,22 +35,22 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Title here'),
+          title: Text('Title bar'),
         ),
         body: Column(
           children: <Widget>[
-            Text(questions.elementAt(questionIndex)),
+            Question(questions.elementAt(_questionIndex)),
             RaisedButton(
               child: Text('Answer 1'),
-              onPressed: this.answerQuestion,
+              onPressed: this._answerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
-              onPressed: this.answerQuestion,
+              onPressed: this._answerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 3'),
-              onPressed: this.answerQuestion,
+              onPressed: this._answerQuestion,
             ),
           ],
         ),
